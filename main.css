@@ -61,7 +61,7 @@ tr {
     left:0px;
 }
 
-img[src="/images/brush.svg"] {
+img[src="images/brush.svg"] {
     height:35px;
     position:absolute;
 }
@@ -75,7 +75,7 @@ img[src="/images/brush.svg"] {
     margin-top:110px;
 }
 
-img[src="/images/eraser.svg"] {
+img[src="images/eraser.svg"] {
     height:35px;
     position:absolute;
     height:40px;
