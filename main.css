@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    background-color: #fafafa;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.grid-table {
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a drop shadow to the entire table */
+}
+
+.grid-table td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #999;
+    background-color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+tr {
+    width:20px;
+}
+
+#colorTab {
+    position: absolute;
+    right: 0px;
+    width:125px;
+    height:350px;
+    box-shadow: 0px 3px 7px rgb(59, 59, 59);
+}
+
+#colorTab td {
+    border: 1px solid #999;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 28px;
+    
+}
+
+.rectangle{
+    width:50px;
+    height:50px;
+    background:rgb(183, 183, 183);
+    text-align:center;
+    vertical-align: middle;
+    box-shadow: 0px 2px 5px black;
+}
+
+#rectangle1 {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    left:0px;
+}
+
+img[src="/images/brush.svg"] {
+    height:35px;
+    position:absolute;
+}
+
+#rectangle2 {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    left:0px;
+    margin-top:110px;
+}
+
+img[src="/images/eraser.svg"] {
+    height:35px;
+    position:absolute;
+    height:40px;
+}
+
+#A1 {
+    background-color:red
+}
+
+#A0 {
+    background-color:rgb(236, 92, 92)
+}
+
+#B1 {
+    background-color:orange
+}
+
+#B0 {
+    background-color:rgb(248, 187, 74)
+}
+
+#C1 {
+    background-color:rgb(215, 215, 39)
+}
+
+#C0 {
+    background-color:yellow
+}
+
+#D1 {
+    background-color:green
+}
+
+#D0 {
+    background-color:rgb(103, 236, 103)
+}
+
+#E1 {
+    background-color:rgb(53, 70, 201)
+}
+
+#E0 {
+    background-color:rgb(103, 203, 236)
+}
+
+#F1 {
+    background-color:rgb(157, 15, 157)
+}
+
+#F0 {
+    background-color:rgb(216, 94, 235)
+}
+
+button {
+    position:relative;
+    top:20px;
+    height:50px;
+    width:150px;
+    font-size:30px;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+

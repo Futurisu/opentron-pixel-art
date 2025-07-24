@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opentron Color Picker</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class = "rectangle" id="rectangle1">
+        <img src="/images/brush.svg" alt="image of a brush" id="brush"></img>
+    </div>
+
+    <div class = "rectangle" id="rectangle2">
+        <img src="/images/eraser.svg" alt="image of an eraser" id="eraser"></img>
+    </div>
+    
+    <!--FIRST TABLE-->
+    <table class="grid-table" id="gridTable"></table>
+
+    <!--2ND TABLE-->
+    <table class="color-table" id="colorTab"></table>
+    <button id="runButton" onclick="run()">RUN</button>
+
+    <script src="actions.js" defer></script>
+</body>
+</html>
