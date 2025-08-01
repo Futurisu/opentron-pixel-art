@@ -1,6 +1,4 @@
-// GLOBAL VARIABLES
-const cars = ["A", "B", "C", "D", "E", "F", "G", "H"] // Row names
-
+// CLASS
 class Brush {
     constructor(brushColor,inUse) {
         this.brushColor = brushColor;
@@ -8,50 +6,101 @@ class Brush {
     }
 }
 
+// GLOBAL VARIABLES
+const rowHeader = ["A", "B", "C", "D", "E", "F", "G", "H"] // Row names
 const userBrush = new Brush("blue",true);
 const eraser = new Brush("white",false);
 
-function changeColor() {
-    const cells = document.querySelectorAll("#colorTab td"); // Creates a NodeList-array type object of color cells
 
-    cells.forEach(function(cell) {
-        cell.addEventListener("click", function() {
+rectangle1.style.border = '3px solid rgba(234, 234, 234, 1)'; // Setting the default tool to the brush.
+rectangle1.style.borderRadius = '5px';
+rectangle1.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the brush rectangle
+
+function changeColor() {
+    const colorCells = document.querySelectorAll("#colorTab td");
+
+    colorCells.forEach(function(cell) { // For each cell in the color-table, run the code below
+        cell.style.border = 'none';
+        cell.addEventListener("click", function() { // When this cell is clicked, change the color of the userBrush
+
+            colorCells.forEach(function(cell) {
+                cell.style.outline = 'none'; // Removes the outline from all cells in the color table
+            });
+
+            cell.style.outline = '5px solid rgba(255, 255, 255, 1)'; // Adds an outline to the clicked cell
+            cell.style.outlineOffset = '-2px'; // Moves the outline closer to the cell
             userBrush.brushColor = window.getComputedStyle(cell).backgroundColor; // Changes brush color based on clicked element
-            console.log("changeColor!");
         });
     });
 };
 
-function paint() {
-    const cells = document.querySelectorAll("#gridTable td");
+function applyBrushColor(cell) {
+    if (eraser.inUse) {
+        cell.style.backgroundColor = eraser.brushColor;
+    } else if (userBrush.inUse) {
+        cell.style.backgroundColor = userBrush.brushColor;
+    }
+}
 
-    cells.forEach(function(cell) { // Each individual cell listens for the following events
-        cell.addEventListener("click", function() {
-            if(eraser.inUse) { // Erase function
-                cell.style.backgroundColor = eraser.brushColor;
-                console.log("erase!");
-            } else if (userBrush.inUse) { // Paint function
-                cell.style.backgroundColor = userBrush.brushColor;
-                console.log("paint!");
+function paint() {
+    const cells = document.querySelectorAll("#gridTable td"); // Creates a NodeList object of grid cells, similar to an array
+    let isPainting = false;
+
+    // Prevent default drag behavior on the grid
+    document.querySelector("#gridTable").addEventListener("dragstart", (e) => {
+        e.preventDefault();
+    });
+
+    // Add user-select: none to prevent text selection
+    document.querySelector("#gridTable").style.userSelect = "none";
+
+    document.addEventListener("mousedown", () => {
+        isPainting = true; // Start painting when the mouse button is pressed
+        console.log("mouse down");
+    });
+
+    document.addEventListener("mouseup", () => {
+        isPainting = false; // Stop painting when the mouse button is released
+        console.log("mouse up");
+    });
+
+    cells.forEach(function(cell) {
+        cell.addEventListener("mouseenter", function() {
+            if (isPainting) {
+                applyBrushColor(cell);
             }
         });
-    });                    
+        cell.addEventListener("click", function() {
+            console.log("cell clicked");
+            applyBrushColor(cell);
+        });
+    });
 }
 
 function toolToggle() {
-    const eraserBtn = document.getElementById("eraser");
-    const brushBtn = document.getElementById("brush");
+    const eraserBtn = document.getElementById("rectangle2");
+    const brushBtn = document.getElementById("rectangle1");
+    const rectangle1 = document.getElementById("rectangle1");
+    const rectangle2 = document.getElementById("rectangle2");
 
     eraserBtn.addEventListener("click", function() { // Switches the boolean of tool when one or the other is clicked
         eraser.inUse = true;
         userBrush.inUse = false;
-        console.log("eraser in use");
-    });
+        rectangle2.style.border = '3px solid rgba(234, 234, 234, 1)';
+        rectangle2.style.borderRadius = '5px';
+        rectangle2.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the eraser rectangle
+        rectangle1.style.border = 'none'; // Removes border from the brush rectangle
+        rectangle1.style.boxShadow = 'none'; // Removes box shadow from the brush rectangle
+    }); 
 
     brushBtn.addEventListener("click", function() {
         eraser.inUse = false;
         userBrush.inUse = true;
-        console.log("brush in use");
+        rectangle1.style.border = '3px solid rgba(234, 234, 234, 1)';
+        rectangle1.style.borderRadius = '5px';
+        rectangle1.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the brush rectangle
+        rectangle2.style.border = 'none'; // Removes border from the brush rectangle
+        rectangle2.style.boxShadow = 'none'; // Removes box shadow from the eraser rectangle
     });        
 }
 
@@ -96,11 +145,9 @@ function buildColorTable() {
 
         for(let c=0; c < colorCols; c++) {
             const colorPixel = document.createElement('td');
-            //colorPixel.textContent = `${cars[r]}${c}`; // Shows pixel labels
-
-            colorPixel.id = `${cars[r]}${c}`; // Adds an ID to each cell
-            
-
+            //colorPixel.textContent = `${rowHeader[r]}${c}`; // Shows pixel labels
+            colorPixel.style.color = 'rgba(255, 255, 255, 0.5)';
+            colorPixel.id = `${rowHeader[r]}${c}`; // Adds an ID to each cell
             colorRow.appendChild(colorPixel);
         }
         colorTable.appendChild(colorRow);
@@ -123,7 +170,7 @@ function run() {
 }
 
 // RUN FUNCTIONS
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { // Runs functions after HTML doc is fully loaded, ensuring they work
     buildGridTable();
     buildColorTable();
     //highlightCells();
