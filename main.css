@@ -60,17 +60,17 @@ body {
 }
 
 /* ==== Tool Icons ==== */
-img[src="/images/brush.svg"] {
+img[src="images/brush.svg"] {
     height: 35px;
     position: absolute;
 }
 
-img[src="/images/eraser.svg"] {
+img[src="images/eraser.svg"] {
     height: 40px;
     position: absolute;
 }
 
-img[src="/images/clear_button.svg"] {
+img[src="images/clear_button.svg"] {
     height: 40px;
     position: absolute;
 }
@@ -175,3 +175,4 @@ button:hover {
 #E0 { background-color: rgb(103, 203, 236); }
 #F1 { background-color: rgb(157, 15, 157); }
 #F0 { background-color: rgb(216, 94, 235); }
+
