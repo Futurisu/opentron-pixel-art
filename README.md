@@ -4,10 +4,9 @@ Creates a pixel art design using an Opentron and food gel
 **LINK:** futurisu.github.io/opentron-pixel-art/
 
 # INSTRUCTIONS
-- Download the flaskApp.py and json file, this flask script will create the Opentron protocol to run on your device using the json file
-- Run the flaskApp.py
-- Create your drawing then press run!
-- Upload your newly created protocool file named "TBD.py" to the Opentrons app
+- Download the flaskApp.py and install flask in your terminal using ```pip install flask```
+- Create your drawing by going to the link above then press run! You should now see a file named ```pixelDrwaingScript.py``` in the same path as your flaskApp.py
+- Upload your newly created protocool file ```pixelDrwaingScript.py``` to the Opentrons app
 - Confirm all the calibrations and alignments onscreen
 
 # COLOR ORDER
