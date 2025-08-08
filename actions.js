@@ -1,4 +1,4 @@
-// CLASS
+// BRUSH CLASS
 class Brush {
     constructor(brushColor,inUse) {
         this.brushColor = brushColor;
@@ -11,7 +11,7 @@ const rowHeader = ["A", "B", "C", "D", "E", "F", "G", "H"] // Row names
 const userBrush = new Brush("blue",true);
 const eraser = new Brush("white",false);
 
-
+// INITIAL BRUSH SETTING
 rectangle1.style.border = '3px solid rgba(234, 234, 234, 1)'; // Setting the default tool to the brush.
 rectangle1.style.borderRadius = '5px';
 rectangle1.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the brush rectangle
@@ -30,8 +30,18 @@ function changeColor() {
             cell.style.outline = '5px solid rgba(255, 255, 255, 1)'; // Adds an outline to the clicked cell
             cell.style.outlineOffset = '-2px'; // Moves the outline closer to the cell
             userBrush.brushColor = window.getComputedStyle(cell).backgroundColor; // Changes brush color based on clicked element
+
+            // Update the eraser and brush states
+            eraser.inUse = false;
+            userBrush.inUse = true;
+            rectangle1.style.border = '3px solid rgba(234, 234, 234, 1)';
+            rectangle1.style.borderRadius = '5px';
+            rectangle1.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the brush rectangle
+            rectangle2.style.border = 'none'; // Removes border from the brush rectangle
+            rectangle2.style.boxShadow = 'none'; // Removes box shadow from the eraser rectangle'
         });
     });
+
 };
 
 function applyBrushColor(cell) {
@@ -56,12 +66,10 @@ function paint() {
 
     document.addEventListener("mousedown", () => {
         isPainting = true; // Start painting when the mouse button is pressed
-        console.log("mouse down");
     });
 
     document.addEventListener("mouseup", () => {
         isPainting = false; // Stop painting when the mouse button is released
-        console.log("mouse up");
     });
 
     cells.forEach(function(cell) {
@@ -71,7 +79,6 @@ function paint() {
             }
         });
         cell.addEventListener("click", function() {
-            console.log("cell clicked");
             applyBrushColor(cell);
         });
     });
@@ -154,6 +161,14 @@ function buildColorTable() {
     }
 }
 
+function clearGrid() {
+    const cells = document.querySelectorAll("#gridTable td"); // Creates a NodeList of grid cells
+    cells.forEach(function(cell) {
+        cell.style.transition = "background-color 0.4s cubic-bezier(.4,0,.2,1)";
+        cell.style.backgroundColor = "white";
+    });
+}
+
 function run() {
     const colors = [];
 
@@ -177,4 +192,9 @@ document.addEventListener('DOMContentLoaded', () => { // Runs functions after HT
     paint();
     changeColor();
     toolToggle();
+    // Connect trash can icon to clearGrid
+    const clearBtn = document.getElementById("rectangle3");
+    if (clearBtn) {
+        clearBtn.addEventListener("click", clearGrid);
+    }
 });
