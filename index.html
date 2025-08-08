@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0", maximum-scale=1.0, user-scalable=no>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
@@ -10,21 +10,22 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div class = "rectangle" id="rectangle1">
-        <img src="/images/brush.svg" alt="image of a brush" id="brush"></img>
+    <div class="tools-row">
+        <div class="rectangle" id="rectangle1">
+            <img src="/images/brush.svg" alt="image of a brush" id="brush" />
+        </div>
+        <div class="rectangle" id="rectangle2">
+            <img src="/images/eraser.svg" alt="image of an eraser" id="eraser" />
+        </div>
+        <div class="rectangle" id="rectangle3">
+            <img src="/images/clear_button.svg" alt="image of a trash can, clear button" id="clear" />
+        </div>
     </div>
-
-    <div class = "rectangle" id="rectangle2">
-        <img src="/images/eraser.svg" alt="image of an eraser" id="eraser"></img>
+    <div class="main-content-row">
+        <table class="grid-table" id="gridTable"></table>
+        <table class="color-table" id="colorTab"></table>
     </div>
-    
-    <!--FIRST TABLE-->
-    <table class="grid-table" id="gridTable"></table>
-
-    <!--2ND TABLE-->
-    <table class="color-table" id="colorTab"></table>
     <button id="runButton" onclick="run()">RUN</button>
-
     <script src="actions.js" defer></script>
 </body>
 </html>
