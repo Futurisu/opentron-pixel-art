@@ -22,22 +22,36 @@ body {
     user-select: none;
     transition: box-shadow 0.2s ease-in-out;
     cursor: pointer;
+    position: static;
+    margin: 0 12px;
 }
 
 .rectangle:hover {
     box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.75);
 }
 
-#rectangle1 {
-    position: relative;
-    right: 45px;
-    top: 30px;
+.tools-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+    width: 100%;
 }
 
-#rectangle2 {
-    position: relative;
-    bottom: 20px;
-    left: 45px;
+#rectangle1, #rectangle2, #rectangle3 {
+    position: static;
+}
+
+.main-content-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+    margin-bottom: 24px;
 }
 
 .selected-tool {
@@ -46,12 +60,17 @@ body {
 }
 
 /* ==== Tool Icons ==== */
-img[src="./images/brush.svg"] {
+img[src="/images/brush.svg"] {
     height: 35px;
     position: absolute;
 }
 
-img[src="./images/eraser.svg"] {
+img[src="/images/eraser.svg"] {
+    height: 40px;
+    position: absolute;
+}
+
+img[src="/images/clear_button.svg"] {
     height: 40px;
     position: absolute;
 }
@@ -73,7 +92,6 @@ img[src="./images/eraser.svg"] {
     vertical-align: middle;
     font-size: 14px;
     border: 1px solid #ddd;
-    transition: background-color 0.1s ease;
 }
 
 tr {
@@ -110,18 +128,20 @@ tr {
 /* ===== Run Button ===== */
 button {
     position: relative;
-    top: 20px;
+    top: 10px;
     height: 50px;
     width: 150px;
-    font-size: 24px;
+    font-size: 32px;
     font-family: "Titan One", sans-serif;
     font-weight: bold;
     border: none;
     color: white;
-    background-color: rgb(114, 168, 215);
+    background-color: rgb(62, 62, 62);
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
+    letter-spacing:3px;
+    user-select: none;
 }
 
 button:hover {
