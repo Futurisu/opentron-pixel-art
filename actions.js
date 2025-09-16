@@ -1,6 +1,9 @@
 // BRUSH CLASS
+/**
+ * Class reperesenting a brush object.
+ */
 class Brush {
-    constructor(brushColor,inUse) {
+    constructor(brushColor, inUse) {
         this.brushColor = brushColor;
         this.inUse = inUse;
     }
@@ -8,22 +11,25 @@ class Brush {
 
 // GLOBAL VARIABLES
 const rowHeader = ["A", "B", "C", "D", "E", "F", "G", "H"] // Row names
-const userBrush = new Brush("blue",true);
-const eraser = new Brush("white",false);
+const userBrush = new Brush("blue", true);
+const eraser = new Brush("white", false);
 
 // INITIAL BRUSH SETTING
 rectangle1.style.border = '3px solid rgba(234, 234, 234, 1)'; // Setting the default tool to the brush.
 rectangle1.style.borderRadius = '5px';
 rectangle1.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the brush rectangle
 
+/**
+ * Function to change the color of the brush when a color cell is clicked.
+ */
 function changeColor() {
     const colorCells = document.querySelectorAll("#colorTab td");
 
-    colorCells.forEach(function(cell) { // For each cell in the color-table, run the code below
+    colorCells.forEach(function (cell) { // For each cell in the color-table, run the code below
         cell.style.border = 'none';
-        cell.addEventListener("click", function() { // When this cell is clicked, change the color of the userBrush
+        cell.addEventListener("click", function () { // When this cell is clicked, change the color of the userBrush
 
-            colorCells.forEach(function(cell) {
+            colorCells.forEach(function (cell) {
                 cell.style.outline = 'none'; // Removes the outline from all cells in the color table
             });
 
@@ -44,6 +50,10 @@ function changeColor() {
 
 };
 
+/**
+ * Function to apply the brush color to a cell.
+ * @param {*} cell 
+ */
 function applyBrushColor(cell) {
     if (eraser.inUse) {
         cell.style.backgroundColor = eraser.brushColor;
@@ -52,6 +62,9 @@ function applyBrushColor(cell) {
     }
 }
 
+/**
+ * Function to enable painting on the grid.
+ */
 function paint() {
     const cells = document.querySelectorAll("#gridTable td"); // Creates a NodeList object of grid cells, similar to an array
     let isPainting = false;
@@ -72,25 +85,28 @@ function paint() {
         isPainting = false; // Stop painting when the mouse button is released
     });
 
-    cells.forEach(function(cell) {
-        cell.addEventListener("mouseenter", function() {
+    cells.forEach(function (cell) {
+        cell.addEventListener("mouseenter", function () {
             if (isPainting) {
                 applyBrushColor(cell);
             }
         });
-        cell.addEventListener("click", function() {
+        cell.addEventListener("click", function () {
             applyBrushColor(cell);
         });
     });
 }
 
+/**
+ * Function to toggle between brush and eraser tools.
+ */
 function toolToggle() {
     const eraserBtn = document.getElementById("rectangle2");
     const brushBtn = document.getElementById("rectangle1");
     const rectangle1 = document.getElementById("rectangle1");
     const rectangle2 = document.getElementById("rectangle2");
 
-    eraserBtn.addEventListener("click", function() { // Switches the boolean of tool when one or the other is clicked
+    eraserBtn.addEventListener("click", function () { // Switches the boolean of tool when one or the other is clicked
         eraser.inUse = true;
         userBrush.inUse = false;
         rectangle2.style.border = '3px solid rgba(234, 234, 234, 1)';
@@ -98,9 +114,9 @@ function toolToggle() {
         rectangle2.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the eraser rectangle
         rectangle1.style.border = 'none'; // Removes border from the brush rectangle
         rectangle1.style.boxShadow = 'none'; // Removes box shadow from the brush rectangle
-    }); 
+    });
 
-    brushBtn.addEventListener("click", function() {
+    brushBtn.addEventListener("click", function () {
         eraser.inUse = false;
         userBrush.inUse = true;
         rectangle1.style.border = '3px solid rgba(234, 234, 234, 1)';
@@ -108,23 +124,29 @@ function toolToggle() {
         rectangle1.style.boxShadow = '0 0 15px 2px rgba(255, 255, 255, 0.75)'; // Adds a box shadow to the brush rectangle
         rectangle2.style.border = 'none'; // Removes border from the brush rectangle
         rectangle2.style.boxShadow = 'none'; // Removes box shadow from the eraser rectangle
-    });        
+    });
 }
 
+/**
+ * Decelared but unused function to highlight cells on hover. For testing purposes/gimmick.
+ */
 function highlightCells() {
     const cells = document.querySelectorAll("#gridTable td"); // Creates a NodeList-array type object of grid cells
 
-    cells.forEach(function(cell) { // Loops through all the cells in table
-        cell.addEventListener("mouseenter", function() { // If detected mouse movement, cell turns gray 
+    cells.forEach(function (cell) { // Loops through all the cells in table
+        cell.addEventListener("mouseenter", function () { // If detected mouse movement, cell turns gray 
             cell.style.backgroundColor = "lightgray";
         });
 
-        cell.addEventListener("mouseleave", function() { // When the mouse leaves, the cell reverts to white
+        cell.addEventListener("mouseleave", function () { // When the mouse leaves, the cell reverts to white
             cell.style.backgroundColor = "white";
         });
     });
 }
 
+/**
+ * Function that builds the entire grid table using a loop and appending elements.
+ */
 function buildGridTable() {
     const table = document.getElementById('gridTable');
     const rows = 8;
@@ -142,15 +164,18 @@ function buildGridTable() {
     }
 }
 
+/**
+ * Similar function  as buildGridTable, but for the color table.
+ */
 function buildColorTable() {
     const colorTable = document.getElementById('colorTab');
     const colorRows = 6;
     const colorCols = 2;
-    
-    for(let r = 0; r < colorRows; r++ ) { // Loops through every row and column to create the color table
+
+    for (let r = 0; r < colorRows; r++) { // Loops through every row and column to create the color table
         const colorRow = document.createElement('tr');
 
-        for(let c=0; c < colorCols; c++) {
+        for (let c = 0; c < colorCols; c++) {
             const colorPixel = document.createElement('td');
             //colorPixel.textContent = `${rowHeader[r]}${c}`; // Shows pixel labels
             colorPixel.style.color = 'rgba(255, 255, 255, 0.5)';
@@ -161,14 +186,21 @@ function buildColorTable() {
     }
 }
 
+/**
+ * Function to clear the grid when the trash can icon is clicked.
+ */
 function clearGrid() {
     const cells = document.querySelectorAll("#gridTable td"); // Creates a NodeList of grid cells
-    cells.forEach(function(cell) {
-        cell.style.transition = "background-color 0.4s cubic-bezier(.4,0,.2,1)";
+    cells.forEach(function (cell) {
+        cell.style.transition = "background-color 1s cubic-bezier(.4,0,.2,1)";
         cell.style.backgroundColor = "white";
+        cell.style.transition = ""; // Resets transition property after clearing
     });
 }
 
+/**
+ * Sends the colors array to the Flask server when the run button is clicked.
+ */
 function run() {
     const colors = [];
 
@@ -176,7 +208,7 @@ function run() {
         const color = cell.style.backgroundColor || 'white';
         colors.push(color);
     });
-        fetch('http://127.0.0.1:5000/save-colors', { // The URL colors array is being sent to 
+    fetch('http://127.0.0.1:5000/save-colors', { // The URL colors array is being sent to 
         method: 'POST', // Identifying what type of operation, sending a certain piece of data
         headers: { 'Content-Type': 'application/json' }, // Identifying what kind of file, a json
         body: JSON.stringify(colors) // Sending the json file of the colors
