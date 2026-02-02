@@ -15,5 +15,8 @@ Dark colors are on the right while light colors are on the left. When filling up
 
 <img width="157" height="442" alt="image" src="https://github.com/user-attachments/assets/cc65b504-a5d4-4741-870d-37e080b9a73a" />
 
+# EXAMPLES
+<img width="559" height="466" alt="Screenshot 2026-02-01 193144" src="https://github.com/user-attachments/assets/41520e2c-6ea9-4868-b46b-919051e2715a" />
+
 # END
 After that, just press run and see the Opentron create your artwork :)
