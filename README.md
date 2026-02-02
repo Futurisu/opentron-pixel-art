@@ -1,7 +1,7 @@
 # opentron-pixel-art
 Creates a pixel art design using an Opentron and food gel
 
-**LINK:** futurisu.github.io/opentron-pixel-art/
+**LINK:** futurisu.github.io/opentron-pixel-art
 
 # INSTRUCTIONS
 - Download the flaskApp.py and install flask in your terminal using ```pip install flask```
